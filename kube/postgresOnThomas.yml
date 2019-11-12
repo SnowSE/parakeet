@@ -1,0 +1,61 @@
+# kubectl label nodes sudoclub3 name=thomas
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: postgres-config
+  labels:
+    app: postgres
+data:
+  POSTGRES_USER: parakeet
+  POSTGRES_PASSWORD: parakeet123
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgres
+  template:
+    metadata:
+      labels:
+        app: postgres
+    spec:
+      containers:
+        - name: postgres
+          image: postgres:12.0
+          imagePullPolicy: "IfNotPresent"
+          ports:
+            - containerPort: 5432
+          envFrom:
+            - configMapRef:
+                name: postgres-config
+          volumeMounts:
+          - mountPath: /var/lib/postgresql/data
+            name: postgresdb
+      volumes:
+      - name: postgresdb
+        hostPath:
+          path: /home/thomas/kubernetesData
+          type: DirectoryOrCreate
+      nodeSelector:
+        name: thomas
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres
+  labels:
+    app: postgres
+spec:
+  type: NodePort
+  sessionAffinity: ClientIP
+  ports:
+  - port: 5432
+    nodePort: 30001
+  selector:
+   app: postgres
+---
