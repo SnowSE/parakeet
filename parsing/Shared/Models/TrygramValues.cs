@@ -1,4 +1,4 @@
-﻿namespace TrygramParserAPI.Models
+﻿namespace Shared.Models
 {
     public class TrygramValues
     {

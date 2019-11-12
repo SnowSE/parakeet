@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using TrygramParserAPI.Models;
+using Shared.Models;
 using TrygramParserAPI.Repositories;
 
 namespace TrygramParserAPI.Services

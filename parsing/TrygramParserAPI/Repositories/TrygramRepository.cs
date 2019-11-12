@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using TrygramParserAPI.Data;
-using TrygramParserAPI.Models;
+using Shared.Data;
+using Shared.Models;
 
 namespace TrygramParserAPI.Repositories
 {

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using TrygramParserAPI.Models;
+using Shared.Models;
 
 namespace TrygramParserAPI.Services
 {
