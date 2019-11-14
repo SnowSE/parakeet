@@ -33,8 +33,8 @@ namespace TrygramParserAPI
             services.AddScoped<ITrygramRepository, TrygramRepository>();
             services.AddScoped<ITrygramService, TrygramService>();
             services.AddDbContext<TrygramContext>(options =>
-                    options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
-                    //options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
+                    //options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
+                    options.UseNpgsql(Configuration.GetValue<string>("DB_CONNECTION")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
