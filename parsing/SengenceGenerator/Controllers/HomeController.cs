@@ -7,11 +7,18 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using SentenceGenerator.Models;
 using SentenceGenerator.Services;
+using Shared.Data;
 
 namespace SentenceGenerator.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly TrygramContext _context;
+
+        public HomeController(TrygramContext context)
+        {
+            _context = context;
+        }
         public IActionResult Index()
         {
             return View();
@@ -34,7 +41,7 @@ namespace SentenceGenerator.Controllers
             ////////////////////////////
 
             //Wait for database response
-            //var dictionary = _contextCallDatabase;
+            //var dictionary = _context.Trygrams.ToList;
 
             var sentence = trigramService.CreateSentenceFromTrigram(dictionary, startingWord);
             ViewBag.Sentence = sentence;

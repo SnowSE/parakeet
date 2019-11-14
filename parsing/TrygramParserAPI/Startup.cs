@@ -34,7 +34,7 @@ namespace TrygramParserAPI
             services.AddScoped<ITrygramService, TrygramService>();
             services.AddDbContext<TrygramContext>(options =>
                     //options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
-                    options.UseNpgsql(Configuration.GetValue<string>("DB_CONNECTION")));
+                    options.UseNpgsql(Configuration.GetValue<string>("DATABASE_CONNECTION")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -45,9 +45,8 @@ namespace TrygramParserAPI
                 app.UseDeveloperExceptionPage();
             }
 
-            context.Database.EnsureCreated();
-
-            context.Database.Migrate();
+            if (context.Database.EnsureCreated() == true)
+                context.Database.Migrate();
 
             app.UseHttpsRedirection();
 
