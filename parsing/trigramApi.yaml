@@ -1,0 +1,26 @@
+---
+apiVersion: v1
+kind: Pod
+metadata: 
+  name: trigram-api
+  labels: 
+    app: trigram-api
+spec:
+  containers:
+  - name: trigram-api-container
+    image: snowcollege/parakeet:trigram-parcer-v1.0
+    ports:
+    - containerPort: 80 
+---
+apiVersion: v1
+kind: Pod
+metadata: 
+  name: trigram-web
+  labels: 
+    app: trigram-web
+spec:
+  containers:
+  - name: trigram-web-container
+    image: snowcollege/parakeet:sentence-generator
+    ports:
+    - containerPort: 80 
