@@ -5,14 +5,14 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/core/sdk:3.0-buster AS build
 WORKDIR /src
-COPY ["SentenceGenerator/SentenceGenerator.csproj", "SentenceGenerator/"]
-RUN dotnet restore "SentenceGenerator/SentenceGenerator.csproj"
+COPY ["./SengenceGenerator/SentenceGenerator.csproj", "./SengenceGenerator"]
+RUN dotnet restore "./SengenceGenerator"
 COPY . .
-WORKDIR "/src/SentenceGenerator"
-RUN dotnet build "SentenceGenerator.csproj" -c Release -o /app/build
+WORKDIR /src
+RUN dotnet build "./SengenceGenerator/SentenceGenerator.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "SentenceGenerator.csproj" -c Release -o /app/publish
+RUN dotnet publish "./SengenceGenerator/SentenceGenerator.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
