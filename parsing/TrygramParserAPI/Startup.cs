@@ -45,8 +45,7 @@ namespace TrygramParserAPI
                 app.UseDeveloperExceptionPage();
             }
 
-            if (context.Database.EnsureCreated() == true)
-                context.Database.Migrate();
+            context.Database.EnsureCreated();
 
             app.UseHttpsRedirection();
 
