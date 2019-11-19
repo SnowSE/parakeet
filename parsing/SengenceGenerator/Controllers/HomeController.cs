@@ -33,9 +33,8 @@ namespace SentenceGenerator.Controllers
         public IActionResult DisplayWord(FormModel model)
         {
             var trigramService = new TrigramService();
-            var startingWord = "this";
+            var startingWord = model.Word;
 
-            //var unparsedDictonary = _adapt
             //Wait for database response
             var dictionary = _adapter.ConvertTrigramObjectToString();
 
