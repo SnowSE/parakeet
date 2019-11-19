@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using SentenceGenerator.Services;
 using Shared.Data;
 
 namespace SentenceGenerator
@@ -26,9 +27,9 @@ namespace SentenceGenerator
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-
+            services.AddScoped<ITrigramAdapter, TrigramAdapter>();
             services.AddDbContext<TrygramContext>(options =>
-                    options.UseNpgsql(Configuration.GetValue<string>("DATABASE_CONNECTION")));
+                    options.UseNpgsql(Configuration.GetValue<string>("DB_CONNECTION")));
                  //   services.AddIdentity<User, IdentityRole<long>>()
                 //.AddEntityFrameworkStores<TrigramContext>()
                 //.AddDefaultTokenProviders();

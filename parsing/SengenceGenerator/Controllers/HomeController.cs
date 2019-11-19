@@ -13,11 +13,11 @@ namespace SentenceGenerator.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly TrygramContext _context;
+        private readonly ITrigramAdapter _adapter;
 
-        public HomeController(TrygramContext context)
+        public HomeController(ITrigramAdapter adapter)
         {
-            _context = context;
+            _adapter = adapter;
         }
         public IActionResult Index()
         {
@@ -33,15 +33,11 @@ namespace SentenceGenerator.Controllers
         public IActionResult DisplayWord(FormModel model)
         {
             var trigramService = new TrigramService();
-            //TESTING DATA
-            string fileName = model.Title_;
-            string text = System.IO.File.ReadAllText(@"wwwroot/titles/" + fileName);
-            var dictionary = trigramService.getTrigramsDictionary(text);
-            var startingWord = model.Word;
-            ////////////////////////////
+            var startingWord = "this";
 
+            //var unparsedDictonary = _adapt
             //Wait for database response
-            //var dictionary = _context.Trygrams.ToList;
+            var dictionary = _adapter.ConvertTrigramObjectToString();
 
             var sentence = trigramService.CreateSentenceFromTrigram(dictionary, startingWord);
             ViewBag.Sentence = sentence;
