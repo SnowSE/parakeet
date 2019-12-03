@@ -24,10 +24,10 @@
           <h3>Image Url Upload</h3>
         </header>
         <img id="displayImageUrl" src="https://semantic-ui.com/images/wireframe/image.png" class="card-img-top" alt="...">
-        <form id="urlForm">
-          <input id="imageUrl" type="text" placeholder="Url" />
+        <form action="/image-url" id="urlForm">
+          <input id="imageUrl" type="text" placeholder="Url" name="imageurl" />
+          <button type="submit" class="w3-btn w3-green" id="formSubmit">Submit Url</button>
         </form>
-        <button class="w3-btn w3-green" id="formSubmit">Submit Url</button>
       </div>
     </div>
   </body>
