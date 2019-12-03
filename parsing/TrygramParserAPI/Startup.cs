@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using SentenceGenerator.Services;
 using Shared.Data;
 using TrygramParserAPI.Repositories;
 using TrygramParserAPI.Services;
@@ -32,6 +33,7 @@ namespace TrygramParserAPI
             services.AddControllers().AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore); ;
             services.AddScoped<ITrygramRepository, TrygramRepository>();
             services.AddScoped<ITrygramService, TrygramService>();
+            services.AddScoped<ITrigramService, TrigramService>();
             services.AddDbContext<TrygramContext>(options =>
                     //options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
                     options.UseNpgsql(Configuration.GetValue<string>("DB_CONNECTION")));

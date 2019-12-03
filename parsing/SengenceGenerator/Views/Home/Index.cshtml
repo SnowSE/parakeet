@@ -5,16 +5,10 @@
 
 }
     <form asp-action="DisplayWord">
-        <div class="custom-select" style="width:200px;">
-            <select asp-for="Title_">
-                <option value="0" disabled>Select car:</option>
-                <option value="beeMovie.txt">Bee Movie</option>
-                <option value="shrek.txt">Shrek</option>
-                <option value="avengers.txt">Avengers</option>
-            </select>
-        </div>
+        <select asp-for="Title_" asp-items="ViewBag.TitleList">
+        </select>
         <br />
-        <input asp-for="Word">Holi<br />
+        <input asp-for="Word"><br />
         <input type="submit"><br />
     </form>
 

@@ -13,14 +13,17 @@ namespace SentenceGenerator.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly ITrigramService _trigramService;
         private readonly ITrigramAdapter _adapter;
 
-        public HomeController(ITrigramAdapter adapter)
+        public HomeController(ITrigramAdapter adapter, ITrigramService trigramService)
         {
+            _trigramService = trigramService;
             _adapter = adapter;
         }
         public IActionResult Index()
         {
+            ViewBag.TitleLists = _adapter.GetTitles();
             return View();
         }
 
@@ -32,13 +35,12 @@ namespace SentenceGenerator.Controllers
         [HttpPost, ValidateAntiForgeryToken]
         public IActionResult DisplayWord(FormModel model)
         {
-            var trigramService = new TrigramService();
             var startingWord = model.Word;
 
             //Wait for database response
             var dictionary = _adapter.ConvertTrigramObjectToString();
 
-            var sentence = trigramService.CreateSentenceFromTrigram(dictionary, startingWord);
+            var sentence = _trigramService.CreateSentenceFromTrigram(dictionary, startingWord);
             ViewBag.Sentence = sentence;
             return View("Index");
         }
