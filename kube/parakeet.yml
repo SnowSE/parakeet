@@ -138,6 +138,8 @@ spec:
     env:
     - name: DB_CONNECTION
       value: "Server=postgres; Port=5432; Database=parakeet; User ID=parakeet; Password=parakeet;"
+    - name: ASPNETCORE_ENVIRONMENT
+      value: Development
 ---
 apiVersion: v1
 kind: Service
