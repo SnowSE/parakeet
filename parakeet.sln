@@ -1,0 +1,65 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29418.71
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TrygramParserAPI", "parsing\TrygramParserAPI\TrygramParserAPI.csproj", "{1B3506A1-7A15-413F-8B48-3B927AEA5EE3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shared", "parsing\Shared\Shared.csproj", "{A807AB4C-07E6-41B8-B2BA-38361C429C7A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SentenceGenerator", "parsing\SengenceGenerator\SentenceGenerator.csproj", "{038A06E3-671E-44FC-A3D3-95C3CC31D3E3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "kube", "kube", "{0337B0FA-26AE-40EE-B822-4AF9A6488419}"
+	ProjectSection(SolutionItems) = preProject
+		kube\ocr-api.yml = kube\ocr-api.yml
+		kube\postgresOnThomas.yml = kube\postgresOnThomas.yml
+		kube\trigramApi.yaml = kube\trigramApi.yaml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{0DF0B4B9-3433-4A63-A27F-6B0E64030D9B}"
+	ProjectSection(SolutionItems) = preProject
+		docs\_config.yml = docs\_config.yml
+		docs\fileUpload.js = docs\fileUpload.js
+		docs\index.html = docs\index.html
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ocrapi", "ocrapi", "{3A26F2CA-1178-4621-895C-2CC3B6A968EC}"
+	ProjectSection(SolutionItems) = preProject
+		ocrapi\4.png = ocrapi\4.png
+		ocrapi\build.sh = ocrapi\build.sh
+		ocrapi\Dockerfile = ocrapi\Dockerfile
+		ocrapi\index.js = ocrapi\index.js
+		ocrapi\out.txt = ocrapi\out.txt
+		ocrapi\package-lock.json = ocrapi\package-lock.json
+		ocrapi\package.json = ocrapi\package.json
+		ocrapi\photo.jpg = ocrapi\photo.jpg
+		ocrapi\RequestOut.js = ocrapi\RequestOut.js
+		ocrapi\tesseractRunner.js = ocrapi\tesseractRunner.js
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1B3506A1-7A15-413F-8B48-3B927AEA5EE3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B3506A1-7A15-413F-8B48-3B927AEA5EE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B3506A1-7A15-413F-8B48-3B927AEA5EE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B3506A1-7A15-413F-8B48-3B927AEA5EE3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A807AB4C-07E6-41B8-B2BA-38361C429C7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A807AB4C-07E6-41B8-B2BA-38361C429C7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A807AB4C-07E6-41B8-B2BA-38361C429C7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A807AB4C-07E6-41B8-B2BA-38361C429C7A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{038A06E3-671E-44FC-A3D3-95C3CC31D3E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{038A06E3-671E-44FC-A3D3-95C3CC31D3E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{038A06E3-671E-44FC-A3D3-95C3CC31D3E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{038A06E3-671E-44FC-A3D3-95C3CC31D3E3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9BB0F262-104D-42AD-BE14-D71D46AEA4F9}
+	EndGlobalSection
+EndGlobal
