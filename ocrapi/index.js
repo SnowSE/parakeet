@@ -24,7 +24,7 @@ var corsOptions={
 app.post('/ocrapi',cors(corsOptions),async function(req,res){
     console.log(process.env.PARSING_URL)
     var result = await TesseractRunner.tesseract(req.body.imageurl)
-    RequestOut.sendrequest(process.env.PARSING_URL,result.file);
+    RequestOut.sendrequest(process.env.PARSING_URL+"/api/Trygram/createtrygram",result.file);
     res.write(result.file);
     res.end();
 });

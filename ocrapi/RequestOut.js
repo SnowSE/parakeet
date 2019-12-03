@@ -4,7 +4,7 @@ const RequestOut={
     sendrequest: async function(url,data){
         request.post(url, {
         json: {
-            "data":data
+            "input":data
         }
         }, (error, res, body) => {
         if (error) {
