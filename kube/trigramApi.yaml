@@ -11,6 +11,9 @@ spec:
     image: snowcollege/parakeet:trigram-parcer-v1.0
     ports:
     - containerPort: 80 
+    env:
+    - name: DB_CONNECTION
+      value: "Server=postgres; Port=5432; Database=parakeet; User ID=parakeet; Password=parakeet;"
 ---
 apiVersion: v1
 kind: Pod
@@ -24,3 +27,23 @@ spec:
     image: snowcollege/parakeet:sentence-generator
     ports:
     - containerPort: 80 
+    env:
+    - name: DB_CONNECTION
+      value: "Server=postgres; Port=5432; Database=parakeet; User ID=parakeet; Password=parakeet;"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: trigram-web-service
+  labels:
+    app: trigram-web-service
+spec:
+  type: NodePort
+  sessionAffinity: ClientIP
+  ports:
+  - port: 80
+    protocol: TCP
+    nodePort: 30080
+  selector:
+    app: trigram-web
+---
