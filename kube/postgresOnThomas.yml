@@ -8,7 +8,8 @@ metadata:
     app: postgres
 data:
   POSTGRES_USER: parakeet
-  POSTGRES_PASSWORD: parakeet123
+  POSTGRES_PASSWORD: parakeet
+  POSTGRES_DB: parakeet
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -33,16 +34,16 @@ spec:
           envFrom:
             - configMapRef:
                 name: postgres-config
-          volumeMounts:
-          - mountPath: /var/lib/postgresql/data
-            name: postgresdb
-      volumes:
-      - name: postgresdb
-        hostPath:
-          path: /home/thomas/kubernetesData
-          type: DirectoryOrCreate
-      nodeSelector:
-        name: thomas
+      #     volumeMounts:
+      #     - mountPath: /var/lib/postgresql/data
+      #       name: postgresdb
+      # volumes:
+      # - name: postgresdb
+      #   hostPath:
+      #     path: /home/thomas/kubernetesData
+      #     type: DirectoryOrCreate
+      # nodeSelector:
+      #   name: thomas
 ---
 apiVersion: v1
 kind: Service
