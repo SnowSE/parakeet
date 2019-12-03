@@ -13,8 +13,8 @@
     <nav class="w3-bar w3-gray">
       <a
         class="w3-bar-item w3-button w3-mobile"
-        href="https://github.com/SnowSE/insight"
-        >Insight's GitHub</a
+        href="https://github.com/SnowSE/parakeet"
+        >Parakeet's GitHub</a
       >
     </nav>
     <div class="container" style="display: flex; align-items: center;
@@ -24,10 +24,10 @@
           <h3>Image Url Upload</h3>
         </header>
         <img id="displayImageUrl" src="https://semantic-ui.com/images/wireframe/image.png" class="card-img-top" alt="...">
-        <form id="urlForm">
-          <input id="imageUrl" type="text" placeholder="Url" />
+        <form action="/image-url" id="urlForm">
+          <input id="imageUrl" type="text" placeholder="Url" name="imageurl" />
+          <button type="submit" class="w3-btn w3-green" id="formSubmit">Submit Url</button>
         </form>
-        <button class="w3-btn w3-green" id="formSubmit">Submit Url</button>
       </div>
     </div>
   </body>
