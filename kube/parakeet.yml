@@ -40,12 +40,12 @@ metadata:
 spec:
   containers:
   - name: image-frontend-container
-    image: snowcollege/parakeet:image-frontend-v1.3
+    image: snowcollege/parakeet:image-frontend-v1.10
     ports:
     - containerPort: 80
     env:
     - name: OCR_API_URL
-      value: "http://ocr-api-service:30082"
+      value: "http://ocr-api-service:80/ocrapi"
 ---
 apiVersion: v1
 kind: Service
