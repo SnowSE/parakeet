@@ -23,7 +23,7 @@ namespace SentenceGenerator.Controllers
         }
         public IActionResult Index()
         {
-            ViewBag.TitleLists = _adapter.GetTitles();
+            ViewBag.TitleList = _adapter.GetTitles();
             return View();
         }
 

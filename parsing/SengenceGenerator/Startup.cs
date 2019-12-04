@@ -28,6 +28,7 @@ namespace SentenceGenerator
         {
             services.AddControllersWithViews();
             services.AddScoped<ITrigramAdapter, TrigramAdapter>();
+            services.AddScoped<ITrigramService, TrigramService>();
             services.AddDbContext<TrygramContext>(options =>
                     options.UseNpgsql(Configuration.GetValue<string>("DB_CONNECTION")));
                  //   services.AddIdentity<User, IdentityRole<long>>()
