@@ -24,6 +24,7 @@ namespace TrygramParserAPI.Controllers
         [HttpPost("[Action]")]
         public async Task<List<Trygram>> CreateTrygrams([FromBody] RequestModel request)
         {
+            Console.WriteLine("In create trigrams");
             await _trygramService.ParseString(request.Input);
             return await _trygramService.GetTrygrams();
         }
