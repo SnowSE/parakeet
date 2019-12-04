@@ -8,9 +8,12 @@ metadata:
 spec:
   containers:
   - name: ocr-api-container
-    image: snowcollege/parakeet:ocr-api-v1.0
+    image: snowcollege/parakeet:ocr-api-v3
     ports:
     - containerPort: 80
+    env:
+    - name: PARSING_URL
+      value: "http://trigram-api-service:80"
 ---
 apiVersion: v1
 kind: Service
@@ -27,6 +30,38 @@ spec:
     nodePort: 30082
   selector:
     app: ocr-api
+---
+apiVersion: v1
+kind: Pod
+metadata: 
+  name: image-frontend
+  labels: 
+    app: image-frontend
+spec:
+  containers:
+  - name: image-frontend-container
+    image: snowcollege/parakeet:image-frontend-v1.3
+    ports:
+    - containerPort: 80
+    env:
+    - name: OCR_API_URL
+      value: "http://ocr-api-service:30082"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: image-frontend-service
+  labels:
+    app: image-frontend-service
+spec:
+  type: NodePort
+  sessionAffinity: ClientIP
+  ports:
+  - port: 80
+    protocol: TCP
+    nodePort: 30083
+  selector:
+    app: image-frontend
 ---
 # kubectl label nodes sudoclub3 name=thomas
 ---
@@ -100,7 +135,7 @@ metadata:
 spec:
   containers:
   - name: trigram-api-container
-    image: snowcollege/parakeet:trigram-parcer-v1.0
+    image: snowcollege/parakeet:trigram-parser-v1.1
     ports:
     - containerPort: 80 
     env:
