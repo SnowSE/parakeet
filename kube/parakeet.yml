@@ -40,7 +40,7 @@ metadata:
 spec:
   containers:
   - name: image-frontend-container
-    image: snowcollege/parakeet:image-frontend-v1.2
+    image: snowcollege/parakeet:image-frontend-v1.3
     ports:
     - containerPort: 80
     env:
