@@ -132,7 +132,7 @@ metadata:
 spec:
   containers:
   - name: trigram-web-container
-    image: snowcollege/parakeet:sentence-generator
+    image: snowcollege/parakeet:sentence-generator-v4.3
     ports:
     - containerPort: 80 
     env:
