@@ -1,8 +1,13 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: parakeet
 ---
 apiVersion: v1
 kind: Pod
 metadata: 
   name: ocr-api
+  namespace: parakeet
   labels: 
     app: ocr-api
 spec:
@@ -19,6 +24,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: ocr-api-service
+  namespace: parakeet
   labels:
     app: ocr-api-service
 spec:
@@ -35,6 +41,7 @@ apiVersion: v1
 kind: Pod
 metadata: 
   name: image-frontend
+  namespace: parakeet
   labels: 
     app: image-frontend
 spec:
@@ -51,6 +58,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: image-frontend-service
+  namespace: parakeet
   labels:
     app: image-frontend-service
 spec:
@@ -69,6 +77,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: postgres-config
+  namespace: parakeet
   labels:
     app: postgres
 data:
@@ -80,6 +89,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: postgres
+  namespace: parakeet
 spec:
   replicas: 1
   selector:
@@ -114,6 +124,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: postgres
+  namespace: parakeet
   labels:
     app: postgres
 spec:
@@ -125,11 +136,11 @@ spec:
   selector:
    app: postgres
 ---
----
 apiVersion: v1
 kind: Pod
 metadata: 
   name: trigram-api
+  namespace: parakeet
   labels: 
     app: trigram-api
 spec:
@@ -146,6 +157,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: trigram-api-service
+  namespace: parakeet
   labels:
     app: trigram-api-service
 spec:
@@ -162,6 +174,7 @@ apiVersion: v1
 kind: Pod
 metadata: 
   name: trigram-web
+  namespace: parakeet
   labels: 
     app: trigram-web
 spec:
@@ -180,6 +193,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: trigram-web-service
+  namespace: parakeet
   labels:
     app: trigram-web-service
 spec:
