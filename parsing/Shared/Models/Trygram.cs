@@ -7,6 +7,7 @@ namespace Shared.Models
 {
     public class Trygram
     {
+        public string Title { get; set; }
         public string Key { get; set; }
         public List<TrygramValues> Values { get; set; }
     }

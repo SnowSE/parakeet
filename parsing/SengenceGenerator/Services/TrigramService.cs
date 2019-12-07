@@ -61,7 +61,14 @@ namespace SentenceGenerator.Services
 
         public string CreateSentenceFromTrigram(Dictionary<string, List<string>> dictionary, string startingWord)
         {
+            var resultSentence = "";
             var key = getKeyFromDictionaryThatContainsWord(dictionary, startingWord);
+            if (key == null)
+            {
+                var other = dictionary.Keys.First();
+                resultSentence = $"Sorry, \"{startingWord}\" isn't part of the text, but \"{other}\" is - so let's use that instead...\n";
+                key = other;
+            }
             var story = new List<string>();
             //Add Key (split by spaces)
             var twoWords = splitSentenceByWords(key);
@@ -76,8 +83,8 @@ namespace SentenceGenerator.Services
 
             story = addWordsToStory(dictionary, story, 10000);
 
-            return String.Join(" ", story);
-
+            resultSentence += String.Join(" ", story);
+            return resultSentence;
         }
 
         private List<string> addWordsToStory(Dictionary<string, List<string>> dictionary, List<string> story, int maxLength)

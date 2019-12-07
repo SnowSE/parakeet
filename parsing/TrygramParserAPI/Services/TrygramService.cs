@@ -21,12 +21,17 @@ namespace TrygramParserAPI.Services
             return await _trygramRepository.GetAllTrygramsAsync();
         }
 
-        public async Task<bool> ParseString(string input)
+        public async Task ParseAndPersistAsync(string title, string input)
         {
             var stringList = splitString(input);
             for (int i = 0; i < stringList.Count - 2; i++)
             {
-                var trygram = new Trygram { Key = (stringList[i] + " " + stringList[i + 1]), Values = new List<TrygramValues>() };
+                var trygram = new Trygram
+                {
+                    Title = title,
+                    Key = (stringList[i] + " " + stringList[i + 1]),
+                    Values = new List<TrygramValues>()
+                };
                 var value = new TrygramValues { Value = stringList[i + 2]};
                 trygram.Values.Add(value);
                 if (_trygramRepository.TrygramExists(trygram))
@@ -45,9 +50,6 @@ namespace TrygramParserAPI.Services
                     await _trygramRepository.AddTrygramAsync(trygram);
                 }
             }
-
-
-            return true;
         }
 
         private List<string> splitString(string baseString)

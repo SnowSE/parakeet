@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Shared.Models;
 
 namespace SentenceGenerator.Services
@@ -6,5 +7,6 @@ namespace SentenceGenerator.Services
     public interface ITrigramAdapter
     {
         Dictionary<string, List<string>> ConvertTrigramObjectToString();
+        Task<IEnumerable<string>> GetTitlesAsync();
     }
 }

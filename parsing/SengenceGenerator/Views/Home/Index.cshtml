@@ -1,21 +1,18 @@
 ﻿@model SentenceGenerator.Models.FormModel
 
 @{
-    ViewData["Title"] = "Home Page";
-
+    ViewData["Title"] = "Sentence Generator";
 }
     <form asp-action="DisplayWord">
-        <div class="custom-select" style="width:200px;">
-            <select asp-for="Title_">
-                <option value="0" disabled>Select car:</option>
-                <option value="beeMovie.txt">Bee Movie</option>
-                <option value="shrek.txt">Shrek</option>
-                <option value="avengers.txt">Avengers</option>
-            </select>
-        </div>
+        Pick a title:<br/>
+        <select asp-for="Title_" >
+            @foreach(var title in Model.Titles)
+            {
+                <option value="@title">@title</option>
+            }
+        </select>
         <br />
-        <input asp-for="Word">Holi<br />
-        <input type="submit"><br />
+        Pick a starting word:<br/>
+        <input type="text" asp-for="Word" />
+        <input type="submit">
     </form>
-
-<p>@ViewBag.Sentence</p>

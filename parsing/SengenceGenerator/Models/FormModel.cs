@@ -9,5 +9,6 @@ namespace SentenceGenerator.Models
     {
         public string Title_ { get; set; }
         public string Word { get; set; }
+        public IEnumerable<string> Titles { get; set; }
     }
 }

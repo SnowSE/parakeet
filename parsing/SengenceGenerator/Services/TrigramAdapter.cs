@@ -43,5 +43,11 @@ namespace SentenceGenerator.Services
 
             return dictionary;
         }
+
+        public async Task<IEnumerable<string>> GetTitlesAsync()
+        {
+            var trygrams = await _context.Trygrams.ToListAsync();
+            return trygrams.Select(t => t.Title).Distinct();            
+        }
     }
 }

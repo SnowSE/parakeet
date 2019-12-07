@@ -22,10 +22,9 @@ namespace TrygramParserAPI.Controllers
             _trygramService = trygramService;
         }
         [HttpPost("[Action]")]
-        public async Task<List<Trygram>> CreateTrygrams([FromBody] RequestModel request)
+        public async Task CreateTrygrams([FromBody] RequestModel request)
         {
-            await _trygramService.ParseString(request.Input);
-            return await _trygramService.GetTrygrams();
+            await _trygramService.ParseAndPersistAsync(request.Title, request.Text);
         }
     }
 }

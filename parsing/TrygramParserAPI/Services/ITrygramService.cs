@@ -6,8 +6,6 @@ namespace TrygramParserAPI.Services
 {
     public interface ITrygramService
     {
-        Task<bool> ParseString(string input);
-
-        Task<List<Trygram>> GetTrygrams();
+        Task ParseAndPersistAsync(string title, string input);
     }
 }

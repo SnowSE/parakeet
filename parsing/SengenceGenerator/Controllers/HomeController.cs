@@ -19,9 +19,11 @@ namespace SentenceGenerator.Controllers
         {
             _adapter = adapter;
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var titles = await _adapter.GetTitlesAsync();
+            var model = new FormModel { Titles = titles };
+            return View(model);
         }
 
         public IActionResult Privacy()
@@ -40,7 +42,7 @@ namespace SentenceGenerator.Controllers
 
             var sentence = trigramService.CreateSentenceFromTrigram(dictionary, startingWord);
             ViewBag.Sentence = sentence;
-            return View("Index");
+            return PartialView("Result", sentence);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

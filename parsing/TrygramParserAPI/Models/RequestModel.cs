@@ -7,6 +7,7 @@ namespace TrygramParserAPI.Models
 {
     public class RequestModel
     {
-        public string Input { get; set; }
+        public string Title { get; set; }
+        public string Text { get; set; }
     }
 }
