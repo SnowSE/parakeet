@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SentenceGenerator.Services
 {
-    public class TrigramService
+    public class TrigramService : ITrigramService
     {
         public Dictionary<string, List<string>> getTrigramsDictionary(string sentence)
         {

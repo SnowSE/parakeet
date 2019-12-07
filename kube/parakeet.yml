@@ -1,0 +1,208 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: parakeet
+---
+apiVersion: v1
+kind: Pod
+metadata: 
+  name: ocr-api
+  namespace: parakeet
+  labels: 
+    app: ocr-api
+spec:
+  containers:
+  - name: ocr-api-container
+    image: snowcollege/parakeet:ocr-api-v3
+    ports:
+    - containerPort: 80
+    env:
+    - name: PARSING_URL
+      value: "http://trigram-api-service:80"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ocr-api-service
+  namespace: parakeet
+  labels:
+    app: ocr-api-service
+spec:
+  type: NodePort
+  sessionAffinity: ClientIP
+  ports:
+  - port: 80
+    protocol: TCP
+    nodePort: 30082
+  selector:
+    app: ocr-api
+---
+apiVersion: v1
+kind: Pod
+metadata: 
+  name: image-frontend
+  namespace: parakeet
+  labels: 
+    app: image-frontend
+spec:
+  containers:
+  - name: image-frontend-container
+    image: snowcollege/parakeet:image-frontend-v1.10
+    ports:
+    - containerPort: 80
+    env:
+    - name: OCR_API_URL
+      value: "http://ocr-api-service:80/ocrapi"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: image-frontend-service
+  namespace: parakeet
+  labels:
+    app: image-frontend-service
+spec:
+  type: NodePort
+  sessionAffinity: ClientIP
+  ports:
+  - port: 80
+    protocol: TCP
+    nodePort: 30083
+  selector:
+    app: image-frontend
+---
+# kubectl label nodes sudoclub3 name=thomas
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: postgres-config
+  namespace: parakeet
+  labels:
+    app: postgres
+data:
+  POSTGRES_USER: parakeet
+  POSTGRES_PASSWORD: parakeet
+  POSTGRES_DB: parakeet
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres
+  namespace: parakeet
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgres
+  template:
+    metadata:
+      labels:
+        app: postgres
+    spec:
+      containers:
+        - name: postgres
+          image: postgres:12.0
+          imagePullPolicy: "IfNotPresent"
+          ports:
+            - containerPort: 5432
+          envFrom:
+            - configMapRef:
+                name: postgres-config
+      #     volumeMounts:
+      #     - mountPath: /var/lib/postgresql/data
+      #       name: postgresdb
+      # volumes:
+      # - name: postgresdb
+      #   hostPath:
+      #     path: /home/thomas/kubernetesData
+      #     type: DirectoryOrCreate
+      # nodeSelector:
+      #   name: thomas
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres
+  namespace: parakeet
+  labels:
+    app: postgres
+spec:
+  type: NodePort
+  sessionAffinity: ClientIP
+  ports:
+  - port: 5432
+    nodePort: 30001
+  selector:
+   app: postgres
+---
+apiVersion: v1
+kind: Pod
+metadata: 
+  name: trigram-api
+  namespace: parakeet
+  labels: 
+    app: trigram-api
+spec:
+  containers:
+  - name: trigram-api-container
+    image: snowcollege/parakeet:trigram-parser-v1.1
+    ports:
+    - containerPort: 80 
+    env:
+    - name: DB_CONNECTION
+      value: "Server=postgres; Port=5432; Database=parakeet; User ID=parakeet; Password=parakeet;"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: trigram-api-service
+  namespace: parakeet
+  labels:
+    app: trigram-api-service
+spec:
+  type: NodePort
+  sessionAffinity: ClientIP
+  ports:
+  - port: 80
+    protocol: TCP
+    nodePort: 30081
+  selector:
+    app: trigram-api
+---
+apiVersion: v1
+kind: Pod
+metadata: 
+  name: trigram-web
+  namespace: parakeet
+  labels: 
+    app: trigram-web
+spec:
+  containers:
+  - name: trigram-web-container
+    image: snowcollege/parakeet:sentence-generator-v4.3
+    ports:
+    - containerPort: 80 
+    env:
+    - name: DB_CONNECTION
+      value: "Server=postgres; Port=5432; Database=parakeet; User ID=parakeet; Password=parakeet;"
+    - name: ASPNETCORE_ENVIRONMENT
+      value: Development
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: trigram-web-service
+  namespace: parakeet
+  labels:
+    app: trigram-web-service
+spec:
+  type: NodePort
+  sessionAffinity: ClientIP
+  ports:
+  - port: 80
+    protocol: TCP
+    nodePort: 30080
+  selector:
+    app: trigram-web
+---
