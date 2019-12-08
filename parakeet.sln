@@ -11,9 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SentenceGenerator", "parsin
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "kube", "kube", "{0337B0FA-26AE-40EE-B822-4AF9A6488419}"
 	ProjectSection(SolutionItems) = preProject
-		kube\ocr-api.yml = kube\ocr-api.yml
-		kube\postgresOnThomas.yml = kube\postgresOnThomas.yml
-		kube\trigramApi.yaml = kube\trigramApi.yaml
+		kube\parakeet.yml = kube\parakeet.yml
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{0DF0B4B9-3433-4A63-A27F-6B0E64030D9B}"
