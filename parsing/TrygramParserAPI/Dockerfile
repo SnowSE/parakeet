@@ -5,10 +5,10 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
 WORKDIR /src
-COPY ["TrygramParserAPI.csproj", "TrygramParserAPI/"]
+COPY ["TrygramParserAPI.csproj", "."]
 RUN dotnet restore "TrygramParserAPI.csproj"
 COPY . .
-WORKDIR "/src/TrygramParserAPI"
+WORKDIR "/src"
 RUN dotnet build "TrygramParserAPI.csproj" -c Release -o /app/build
 
 FROM build AS publish
