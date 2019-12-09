@@ -47,7 +47,7 @@ metadata:
 spec:
   containers:
   - name: image-frontend-container
-    image: snowcollege/parakeet:image-frontend-171
+    image: snowcollege/parakeet:image-frontend-172
     ports:
     - containerPort: 80
     env:
@@ -146,7 +146,7 @@ metadata:
 spec:
   containers:
   - name: trigram-api-container
-    image: snowcollege/parakeet:trigram-parser-171
+    image: snowcollege/parakeet:trigram-parser-172
     ports:
     - containerPort: 80 
     env:
@@ -180,7 +180,7 @@ metadata:
 spec:
   containers:
   - name: trigram-web-container
-    image: snowcollege/parakeet:sentence-generator-171
+    image: snowcollege/parakeet:sentence-generator-172
     ports:
     - containerPort: 80 
     env:
