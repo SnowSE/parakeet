@@ -17,10 +17,10 @@ namespace SentenceGenerator.Services
             _context = context;
         }
 
-        public Dictionary<string, List<string>> ConvertTrigramObjectToString()
+        public Dictionary<string, List<string>> ConvertTrigramObjectToString(string title)
         {
             var unparsedDictionary = new Dictionary<string, List<TrygramValues>>();
-            foreach (var keyValuePair in _context.Trygrams.Include(t=>t.Values).ToList())
+            foreach (var keyValuePair in _context.Trygrams.Include(t=>t.Values).Where(t=>t.Title == title).ToList())
             {
                 unparsedDictionary[keyValuePair.Key] = keyValuePair.Values;
             }

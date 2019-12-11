@@ -38,7 +38,7 @@ namespace SentenceGenerator.Controllers
             var startingWord = model.Word;
 
             //Wait for database response
-            var dictionary = _adapter.ConvertTrigramObjectToString();
+            var dictionary = _adapter.ConvertTrigramObjectToString(model.Title_);
 
             var sentence = trigramService.CreateSentenceFromTrigram(dictionary, startingWord);
             ViewBag.Sentence = sentence;
