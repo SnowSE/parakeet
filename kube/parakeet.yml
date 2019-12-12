@@ -89,8 +89,8 @@ data:
   POSTGRES_USER: parakeet
   POSTGRES_PASSWORD: parakeet
   POSTGRES_DB: parakeet
-  MAX_CONNECTIONS: 500
-  SHARED_BUFFERS: 100MB
+  MAX_CONNECTIONS: 5000
+  SHARED_BUFFERS: 5000MB
 ---
 apiVersion: apps/v1
 kind: Deployment
