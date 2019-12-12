@@ -6,7 +6,7 @@ metadata:
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: parakeetDB
+  name: parakeetdb
 ---
 apiVersion: v1
 kind: Pod
@@ -89,7 +89,7 @@ data:
   POSTGRES_USER: parakeet
   POSTGRES_PASSWORD: parakeet
   POSTGRES_DB: parakeet
-  MAX_CONNECTIONS: 5000
+  MAX_CONNECTIONS: "5000"
   SHARED_BUFFERS: 5000MB
 ---
 apiVersion: apps/v1
@@ -250,7 +250,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: pgadmin-service
-  namespace: parakeetDB
+  namespace: parakeetdb
   labels:
     app: pgadmin-service
 spec:
