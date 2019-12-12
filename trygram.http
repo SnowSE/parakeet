@@ -2,6 +2,6 @@ POST http://144.17.24.80:30081/api/trygram/createtrygrams
 Content-Type: application/json
 
 {
-    "text": "kyler is very awesome",
-    "title": "kyler is the title"
+    "text": "this is super great text",
+    "title": "another test"
 }

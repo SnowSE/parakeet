@@ -17,29 +17,37 @@ namespace TrygramParserAPI.Repositories
         }
         public bool TrygramExists(Trygram trygram)
         {
-            return _context.Trygrams.Any(t => t.Key == trygram.Key);
+            var b = _context.Trygrams.Any(t => t.Key == trygram.Key);
+            _context.Database.CloseConnection();
+            return b;
         }
 
         public async Task AddTrygramAsync(Trygram trygram)
         {
             await _context.Trygrams.AddAsync(trygram);
             await _context.SaveChangesAsync();
+            await _context.Database.CloseConnectionAsync();
         }
 
         public async Task UpdateTrygramAsync(Trygram trygram)
         {
             _context.Trygrams.Update(trygram);
             await _context.SaveChangesAsync();
+            await _context.Database.CloseConnectionAsync();
         }
 
         public Trygram GetTrygramByKey(string key)
         {
-            return _context.Trygrams.Where(t => t.Key == key).FirstOrDefault();
+            var t = _context.Trygrams.Where(t => t.Key == key).FirstOrDefault();
+            _context.Database.CloseConnection();
+            return t;
         }
 
         public async Task<List<Trygram>> GetAllTrygramsAsync()
         {
-            return await _context.Trygrams.ToListAsync();
+            var items = await _context.Trygrams.ToListAsync();
+            await _context.Database.CloseConnectionAsync();
+            return items;
         }
     }
 }
